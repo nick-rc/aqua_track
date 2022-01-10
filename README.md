@@ -6,6 +6,7 @@ The goal of this project is to develop an easy-to-use interface for tracking aqu
 ## Steup
 
 ### Clone the project from git
-'''bash
+```bash
 git clone https://github.com/nick-rc/aqua_track.git
-'''
+```
+
