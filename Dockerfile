@@ -1,7 +1,9 @@
+# TODO: Assign specific version
 FROM ubuntu:latest
 
 ENV PYTHONUNBUFFERED 1
 
+# Copy requirements and install dependencies
 COPY ./requirements.txt /requirements.txt
 RUN apk add --update --no-cache postgresql-client jpeg-dev
 RUN apk add --update --no-cache --virtual .tmp-build-deps \
@@ -9,12 +11,15 @@ RUN apk add --update --no-cache --virtual .tmp-build-deps \
 RUN pip install -r ./requirements.txt
 RUN apk del .tmp-build-deps
 
+# Setup project directory from the local data
 RUN mkdir /app
 WORKDIR /app
 COPY ./app /app
 
+# Setup directories for media/static
 RUN mkdir -p /vol/web/media
 RUN mkdir -p /vol/web/static
+# Setup user access
 RUN adduser -D user
 
 RUN chown -R user:user /vol/
