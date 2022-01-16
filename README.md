@@ -48,10 +48,20 @@ RUN set -xe \
 RUN pip install --upgrade pip
 ```
 - Create Django Project with Django Admin
+First, create a new folder in your dev folder with your app name.
+(aqua_track for example.)
+
 Run the following code to setup your django project.
 ```bash
 docker-compose run aqua_track django-admin startproject aqua_track .
 ```
+This creates the files for a base django project in your development directory.
+
+Now you can test the Django site.
+```bash
+docker-compose up
+```
+Take a look at the site in your browser at http://localhost:8000/
 
 ### 1.4) Add Flake8 Support
 Current setup is a specific version range however will be updated.
