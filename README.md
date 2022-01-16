@@ -37,7 +37,7 @@ https://www.docker.com/
 - Setup Dockerfile for Linux and Project Setup
 The following code sections are added to the Dockerfile to setup an ubuntu image and install pip
 
-'''bash
+```bash
 FROM ubuntu:20.04
 
 ...
@@ -46,12 +46,12 @@ RUN set -xe \
         && apt-get update \
         && apt-get -y install python3-pip
 RUN pip install --upgrade pip
-'''
+```
 - Create Django Project with Django Admin
 Run the following code to setup your django project.
-'''bash
+```bash
 docker-compose run aqua_track django-admin startproject aqua_track .
-'''
+```
 
 ### 1.4) Add Flake8 Support
 Current setup is a specific version range however will be updated.
