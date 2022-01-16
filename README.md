@@ -25,7 +25,7 @@ Process for developing the Django app and additional features.
 ### 1.) Project Directory Setup
 ### 1.1) Create the project in GitHub
 Can skip using GitHub if desire is to make repo private or just not usign that service.
-- Create the new dev elopment project in git. 
+- Create the new development project in GitHub. 
 - Select the preferred license and gitignore filetype
 
 ### 1.2) Setup Dockerfile and Docker-Compose
@@ -33,7 +33,27 @@ https://www.docker.com/
 - Create or add Dockerfile
 - Create or add docker-compose.yml file
 
-### 1.4) Setup the Django project
+### 1.3) Setup the Django project
+- Setup Dockerfile for Linux and Project Setup
+The following code sections are added to the Dockerfile to setup an ubuntu image and install pip
 
+'''bash
+FROM ubuntu:20.04
+
+...
+
+RUN set -xe \
+        && apt-get update \
+        && apt-get -y install python3-pip
+RUN pip install --upgrade pip
+'''
+- Create Django Project with Django Admin
+Run the following code to setup your django project.
+'''bash
+docker-compose run aqua_track django-admin startproject aqua_track .
+'''
 
 ### 1.4) Add Flake8 Support
+Current setup is a specific version range however will be updated.
+- Add flake8 to requirements.txt
+
