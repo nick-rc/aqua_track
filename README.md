@@ -74,3 +74,12 @@ Current setup is a specific version range however will be updated.
 - Setup a local_settings.py file in the same directory as settings.py
 - Import all settings from settings.py into local_settings.py
 - Overwrite any variables or add as needed.
+
+### 1.6) Setup initial Core app
+- Run the following command to setup your first app. This one is called 'core'
+```bash
+docker-compose run aqua_track python3 manage.py startapp core
+```
+THis command can be used to startup the remaining apps as needed. 
+
+### 2.) User Management API Setup
