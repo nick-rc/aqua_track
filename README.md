@@ -68,3 +68,9 @@ Current setup is a specific version range however will be updated.
 - Add flake8 to requirements.txt if not already there
 - create new flake8 file in the aqua_track directory.
 
+### 1.5) Setup Local Settings and Hide Secret Key
+- Followed these steps to hide secret key:
+    https://dev.to/vladyslavnua/how-to-protect-your-django-secret-and-oauth-keys-53fl
+- Setup a local_settings.py file in the same directory as settings.py
+- Import all settings from settings.py into local_settings.py
+- Overwrite any variables or add as needed.
