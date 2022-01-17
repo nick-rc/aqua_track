@@ -65,5 +65,6 @@ Take a look at the site in your browser at http://localhost:8000/
 
 ### 1.4) Add Flake8 Support
 Current setup is a specific version range however will be updated.
-- Add flake8 to requirements.txt
+- Add flake8 to requirements.txt if not already there
+- create new flake8 file in the aqua_track directory.
 
