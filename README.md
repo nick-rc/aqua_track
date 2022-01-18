@@ -88,3 +88,8 @@ This command can be used to startup the remaining apps as needed.
     - UserManager pulls from BaseUserManager
     - Custom user model permits email as username
 - Setup UserAdmin in admin.py
+- Setup URL Path in urls.py (Main dir)
+```python
+path('api/user/', include('user.urls')),
+```
+- Add rest_framework to installed apps.
