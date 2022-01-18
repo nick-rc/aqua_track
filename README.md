@@ -19,6 +19,12 @@ Git
 git clone https://github.com/nick-rc/aqua_track.git
 ```
 
+## Testing
+General Testing of full site.
+```bash
+docker-compose run aqua_track python3 manage.py test && flake8
+```
+
 ## Development Process
 Process for developing the Django app and additional features.
 
