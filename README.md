@@ -80,6 +80,11 @@ Current setup is a specific version range however will be updated.
 ```bash
 docker-compose run aqua_track python3 manage.py startapp core
 ```
-THis command can be used to startup the remaining apps as needed. 
+This command can be used to startup the remaining apps as needed. 
 
 ### 2.) User Management API Setup
+- Create a test_admin.py file for superuser testing
+- Add UserManager class and User class to Core models.py
+    - UserManager pulls from BaseUserManager
+    - Custom user model permits email as username
+- Setup UserAdmin in admin.py
