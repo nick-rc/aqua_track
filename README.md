@@ -19,6 +19,31 @@ Git
 git clone https://github.com/nick-rc/aqua_track.git
 ```
 
+## Git control process
+1.) Create new feature branch
+```
+git checkout -b new_branch
+```
+2.) Develop your feature
+- Make sure to perform through unit testing.
+3.) Rebase your feature onto the current main/master.
+```
+git rebase main
+```
+4.) Checkout the main/master branch.
+```
+git checkout main
+```
+4.) Merge branch into master repo
+- I use --no-ff to clarify how branches are developed and introduced into master/main.
+```
+git merge --no-ff new_branch
+```
+5.) Tag new feature and delete branch
+```
+git branch -d new_branch
+```
+
 ## Testing
 General Testing of full site.
 ```bash
