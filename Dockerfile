@@ -7,11 +7,15 @@ ENV PYTHONUNBUFFERED 1
 RUN set -xe \
         && apt-get update \
         && apt-get -y install python3-pip
-RUN pip install --upgrade pip
+# RUN pip install --upgrade pip
 
 # Copy requirements and install dependencies
+ENV DEBIAN_FRONTEND noninteractive
 
-# RUN apt-get install -y postgresql-client jpeg-dev
+RUN apt-get update \
+        && apt-get install -y python3-dev \
+                libpq-dev postgresql \
+                postgresql-contrib
 # RUN apt-get install -y .tmp-build-deps \
  #        gcc libc-dev linux-headers postgresql-dev musl-dev zlib zlib-dev
 
@@ -35,5 +39,3 @@ RUN chown -R user:user /vol/
 RUN chmod -R 755 /vol/web
 
 USER user
-
-

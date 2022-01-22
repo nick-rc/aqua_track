@@ -99,3 +99,8 @@ This command can be used to startup the remaining apps as needed.
 path('api/user/', include('user.urls')),
 ```
 - Add rest_framework to installed apps.
+
+### 2.1) Postgresql Setup
+- Add dependencies to dockerfile.
+** Note - downgraded pysocpg2 to 2.8 due to this issue with 2.9
+[link]https://stackoverflow.com/questions/68024060/assertionerror-database-connection-isnt-set-to-utc
