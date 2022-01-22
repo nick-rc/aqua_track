@@ -26,6 +26,7 @@ git checkout -b new_branch
 ```
 2.) Develop your feature
 - Make sure to perform through unit testing.
+
 3.) Rebase your feature onto the current main/master.
 ```
 git rebase main
@@ -35,7 +36,7 @@ git rebase main
 git checkout main
 ```
 4.) Merge branch into master repo
-- I use --no-ff to clarify how branches are developed and introduced into master/main.
+- I use --no-ff to clarify how branches are developed and introduced into master/main. (It looks good using 'Git Graph' on VS Code too.)
 ```
 git merge --no-ff new_branch
 ```
