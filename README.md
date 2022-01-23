@@ -130,3 +130,41 @@ path('api/user/', include('user.urls')),
 - Add dependencies to dockerfile.
 ** Note - downgraded pysocpg2 to 2.8 due to this issue with 2.9
 [link]https://stackoverflow.com/questions/68024060/assertionerror-database-connection-isnt-set-to-utc
+
+### 3.) Aquarium App API Setup
+1. Start the app via django
+```bash
+docker-compose run aqua_track python3 manage.py startapp aquarium
+```
+2. Setup the follwoing directory structure. 
+- >aquarium
+  - >migrations
+  - >tests
+    - test_models.py
+  - apps.py
+  - models.py
+  - serializers.py
+  - views.py
+3. Update main app urls.py and settings.py
+```python
+urls.py
+...
+path('api/aquarium/', include('user.urls')),
+```
+   - Add 'aquarium' to INSTALLED_APPS in settings.py
+4. Add tests to the tests folder
+   - Usually the baseline tests are:
+     - Test getting list of objects
+     - Test getting object detail
+     - Test creating objects
+     - Test editing/updating objects
+     - Test objects limited to user
+     - Test API only accessible to users.
+5. Update urls.py
+6. Create serializer classes in serializer.py
+7. Create views in views.py
+8. Make migrations
+9. Create Model
+```bash
+docker-compose run aqua_track python3 manage.py makemigrations
+```
