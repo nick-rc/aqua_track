@@ -163,3 +163,8 @@ path('api/aquarium/', include('user.urls')),
 5. Update urls.py
 6. Create serializer classes in serializer.py
 7. Create views in views.py
+8. Make migrations
+9. Create Model
+```bash
+docker-compose run aqua_track python3 manage.py makemigrations
+```
