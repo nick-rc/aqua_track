@@ -13,7 +13,7 @@ from rest_framework import status
 
 from aquarium.models import Aquarium
 
-from aquarium.serializers import AquariumSerializer, AquariumDetailSerializer
+from aquarium.serializers import AquariumSerializer #, AquariumDetailSerializer
 
 
 AQUARIUM_URL = reverse('aquarium:aquarium-list')
@@ -23,7 +23,7 @@ def detail_url(aquarium_id):
     """Return he aquarium detail URL
     - INPUT = Aquarium ID int
     """
-    return reverse('recipe:recipe-detail', args=(aquarium_id,))
+    return reverse('aquarium:aquarium-detail', args=(aquarium_id,))
 
 
 def sample_aquarium(user, **params):
@@ -44,14 +44,10 @@ class PublicAquariumAPITests(TestCase):
 
     def setUp(self) -> None:
         self.client = APIClient()
-        self.user = get_user_model().objects.create_user(
-            'nick@nick.nick',
-            'password'
-        )
-        self.client.force_authenticate(self.user)
 
     def test_auth_required(self):
         """Test to make sure authentication is required"""
+        print("Test Auth Requred")
         res = self.client.get(AQUARIUM_URL)
 
         self.assertEqual(res.status_code, status.HTTP_401_UNAUTHORIZED)
@@ -59,7 +55,15 @@ class PublicAquariumAPITests(TestCase):
 
 class PrivateAquariumAPITests(TestCase):
     """Test access and functionality with authentication"""
-
+    
+    def setUp(self) -> None:
+        self.client = APIClient()
+        self.user = get_user_model().objects.create_user(
+            'nick@nick.nick',
+            'password'
+        )
+        self.client.force_authenticate(self.user)
+    
     def test_retrieve_aquariums(self):
         """Test getting a list of the aquariums available ot the user."""
         sample_aquarium(user=self.user)
@@ -96,7 +100,7 @@ class PrivateAquariumAPITests(TestCase):
         aquarium = sample_aquarium(user=self.user)
         url = detail_url(aquarium.id)
         res = self.client.get(url)
-        serializer = AquariumDetailSerializer
+        serializer = AquariumSerializer(aquarium)
 
         self.assertEqual(res.status_code, status.HTTP_200_OK)
         self.assertEqual(res.data, serializer.data)
@@ -106,10 +110,10 @@ class PrivateAquariumAPITests(TestCase):
         payload = {
             'name': 'My Sample Aq',
             'water_type': 'Freshish',
-            'volume_liter': 50 
+            'volume_liter': 50.0
         }
 
-        res = self.client.psot(AQUARIUM_URL, payload)
+        res = self.client.post(AQUARIUM_URL, payload)
 
         self.assertEqual(res.status_code, status.HTTP_201_CREATED)
 

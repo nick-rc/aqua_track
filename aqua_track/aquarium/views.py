@@ -25,7 +25,7 @@ class BaseAquariumAttrViewSet(viewsets.GenericViewSet,
         serializer.save(user=self.request.user)
     
 
-class AquariumViewSet(viewsets.ModelViewset):
+class AquariumViewSet(viewsets.ModelViewSet):
     """Manage Aquarium Objects"""
     serializer_class = serializers.AquariumSerializer
     queryset = Aquarium.objects.all()
@@ -46,9 +46,11 @@ class AquariumViewSet(viewsets.ModelViewset):
         """Get serializer class for aquarium"""
         if self.action == 'retrieve':
             return serializers.AquariumSerializer
+        
+        return self.serializer_class
 
     def perform_create(self, serializer):
         """Create aquarium"""
-        serializer.save(self.request.user)
+        serializer.save(user=self.request.user)
 
 # ENDFILE
