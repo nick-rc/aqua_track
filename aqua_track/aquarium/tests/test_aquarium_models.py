@@ -35,5 +35,16 @@ class AquariumModelTests(TestCase):
         aquarium = sample_aquarium(user=sample_use)
 
         self.assertEqual(str(aquarium), aquarium.name)
+
+    def test_aquarium_returns_namestring(self):
+        """Test creating a new user with an email is successful"""
+        sample_use = sample_user({
+            'length_cm': 10,
+            'width_cm': 10,
+            'height_cm':10
+        })
+        aquarium = sample_aquarium(user=sample_use)
+
+        self.assertEqual(aquarium.vol_cm3, 1000)
         # Returns true if password is correct
 # ENDFILE
