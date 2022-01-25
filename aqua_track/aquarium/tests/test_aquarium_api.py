@@ -115,6 +115,16 @@ class PrivateAquariumAPITests(TestCase):
 
         res = self.client.post(AQUARIUM_URL, payload)
 
+        defaults_payload = {
+            'length_cm': 0,
+            'width_cm': 0,
+            'height_cm': 0,
+            'description': 'My aquarium description.',
+            'is_planted': False
+        }
+
+        payload.update(defaults_payload)
+
         self.assertEqual(res.status_code, status.HTTP_201_CREATED)
 
         aquarium = Aquarium.objects.get(id=res.data['id'])
@@ -122,7 +132,29 @@ class PrivateAquariumAPITests(TestCase):
         for key in payload.keys():
             self.assertEqual(payload[key], getattr(aquarium, key))
 
-    def test_full_aquarium_update(self):
+    def test_create_aquarium_detailed(self):
+        """Test creating an aquarium with the basic details"""
+        payload = {
+            'name': 'My Sample Aq',
+            'water_type': 'Freshish',
+            'volume_liter': 50.0,
+            'length_cm': 200,
+            'width_cm': 50,
+            'height_cm': 25,
+            'description': 'A luxurious aquatic experience.',
+            'is_planted': True
+        }
+
+        res = self.client.post(AQUARIUM_URL, payload)
+
+        self.assertEqual(res.status_code, status.HTTP_201_CREATED)
+
+        aquarium = Aquarium.objects.get(id=res.data['id'])
+
+        for key in payload.keys():
+            self.assertEqual(payload[key], getattr(aquarium, key))
+
+    def test_basic_aquarium_update(self):
         """Test changing the values of aquarium data"""
         aquarium = sample_aquarium(user=self.user)
 
@@ -138,4 +170,31 @@ class PrivateAquariumAPITests(TestCase):
         self.assertEqual(aquarium.name, payload['name'])
         self.assertEqual(aquarium.water_type, payload['water_type'])
         self.assertEqual(aquarium.volume_liter, payload['volume_liter'])
+
+    def test_detailed_aquarium_update(self):
+        """Test changing the values of aquarium data"""
+        aquarium = sample_aquarium(user=self.user)
+
+        payload = {
+            'name': 'My Sample Aq',
+            'water_type': 'Freshish',
+            'volume_liter': 50.0,
+            'length_cm': 200,
+            'width_cm': 50,
+            'height_cm': 25,
+            'description': 'A luxurious aquatic experience.',
+            'is_planted': True
+        }
+        url = detail_url(aquarium.id)
+        self.client.put(url, payload)
+
+        aquarium.refresh_from_db()
+        self.assertEqual(aquarium.name, payload['name'])
+        self.assertEqual(aquarium.water_type, payload['water_type'])
+        self.assertEqual(aquarium.volume_liter, payload['volume_liter'])
+        self.assertEqual(aquarium.length_cm, payload['length_cm'])
+        self.assertEqual(aquarium.width_cm, payload['width_cm'])
+        self.assertEqual(aquarium.height_cm, payload['height_cm'])
+        self.assertEqual(aquarium.description, payload['description'])
+        self.assertEqual(aquarium.is_planted, payload['is_planted'])
 # ENDFILE

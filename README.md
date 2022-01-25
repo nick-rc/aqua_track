@@ -53,6 +53,8 @@ docker-compose run aqua_track python3 manage.py test && flake8
 
 ## Development Process
 Process for developing the Django app and additional features.
+[https://www.udemy.com/course/django-python-advanced/](Initial guidance for project setup.)
+
 
 ### 1.) Project Directory Setup
 ### 1.1) Create the project in GitHub
@@ -140,6 +142,7 @@ docker-compose run aqua_track python3 manage.py startapp aquarium
 - >aquarium
   - >migrations
   - >tests
+    - __init.py__
     - test_models.py
   - apps.py
   - models.py
@@ -168,3 +171,30 @@ path('api/aquarium/', include('user.urls')),
 ```bash
 docker-compose run aqua_track python3 manage.py makemigrations
 ```
+### 3.1) Aquarium Model Fillout
+
+### 3.2) Aquarium Model Image Support
+
+## Release 0.1.0
+### Models
+- User - Tracks uesrs and supports authentication.
+- Aquarium - Basics for an aquarium model with initial fields.
+  - Name
+  - Volume in Liters
+  - Water Type (Fresh, Salt, etc... )
+  - Length in cm
+  - Width in cm
+  - Height in cm
+  - Description
+### Views
+- User
+  - Create
+  - Edit
+  - Update
+  - Detail
+- Aquarium
+  - Create
+  - Edit
+  - Update
+  - Detail
+
