@@ -9,7 +9,7 @@ from django.test import TestCase
 from django.contrib.auth import get_user_model
 
 from aquarium.models import Aquarium
-
+from core import models
 
 def sample_user(email='test@test.com', password='testpass'):
     """Create a sample user"""
@@ -30,7 +30,7 @@ def sample_aquarium(user, **params):
 class AquariumModelTests(TestCase):
 
     def test_aquarium_returns_namestring(self):
-        """Test creating a new user with an email is successful"""
+        """Test creating a new aquarium with a sample user is successful"""
         sample_use = sample_user()
         aquarium = sample_aquarium(user=sample_use)
 

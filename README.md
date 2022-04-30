@@ -13,6 +13,9 @@ Docker
 Git
 - https://gitforwindows.org/
 
+ModHeader
+- Chrome extension for tracking user auth tokens.
+- https://modheader.com/install
 
 ### Clone the project from git
 ```bash
