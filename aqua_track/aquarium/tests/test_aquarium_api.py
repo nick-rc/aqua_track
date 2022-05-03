@@ -113,8 +113,6 @@ class PrivateAquariumAPITests(TestCase):
             'volume_liter': 50.0
         }
 
-        res = self.client.post(AQUARIUM_URL, payload)
-
         defaults_payload = {
             'length_cm': 0,
             'width_cm': 0,
@@ -125,11 +123,14 @@ class PrivateAquariumAPITests(TestCase):
 
         payload.update(defaults_payload)
 
+        res = self.client.post(AQUARIUM_URL, payload)
+
         self.assertEqual(res.status_code, status.HTTP_201_CREATED)
 
         aquarium = Aquarium.objects.get(id=res.data['id'])
 
         for key in payload.keys():
+            
             self.assertEqual(payload[key], getattr(aquarium, key))
 
     def test_create_aquarium_detailed(self):

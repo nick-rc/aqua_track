@@ -8,6 +8,9 @@ from django.contrib.auth.models import AbstractBaseUser, \
 from django.conf import settings
 
 
+# Create USER PROFILE MODEL CALLED PROFILE
+# ** HELPS SEPARATE DEFAULT USER OEPRATIONS
+
 class UserManager(BaseUserManager):
 
     def create_user(self, email, password=None, **extra_fields):

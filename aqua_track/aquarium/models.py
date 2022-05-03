@@ -30,4 +30,7 @@ class Aquarium(models.Model):
         return self.name
 
     def vol_cm3(self):
-        return self.length_cm * self.width_cm * self.height_cm
+        
+        volume = self.length_cm * self.width_cm * self.height_cm
+
+        return int(volume)
