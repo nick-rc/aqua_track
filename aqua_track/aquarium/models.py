@@ -29,8 +29,12 @@ class Aquarium(models.Model):
     def __str__(self):
         return self.name
 
-    def vol_cm3(self):
-        
+    def calculated_volume(self):
+        """Return the aquarium volume in L^3"""
         volume = self.length_cm * self.width_cm * self.height_cm
 
-        return int(volume)
+        if volume == 0:
+            # Missing at least one dimensional input. Output vol_liter
+            return (self.volume_liter)
+
+        return int(volume)/1000

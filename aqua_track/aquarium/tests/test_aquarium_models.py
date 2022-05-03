@@ -77,6 +77,33 @@ class AquariumModelTests(TestCase):
 
         aquarium = Aquarium.objects.get(id=res.data['id'])
 
-        self.assertEqual(aquarium.vol_cm3(), 1000)
+        self.assertEqual(aquarium.calculated_volume(), 1)
         # Returns true if password is correct
+
+    def test_aquarium_returns_volume_liter(self):
+        """Test that the aquarium returns the vol_liter instead of calc vol 
+            if calc vol is 0"""
+        payload = {
+            'name': 'My Sample Aq 2',
+            'water_type': 'Freshish',
+            'volume_liter': 50.0
+        }
+
+        defaults_payload = {
+            'length_cm': 10,
+            'width_cm': 0,
+            'height_cm':10,
+            'description': 'My aquarium description.',
+            'is_planted': False
+        }
+
+        payload.update(defaults_payload)
+
+        res = self.client.post(AQUARIUM_URL, payload)
+
+        self.assertEqual(res.status_code, status.HTTP_201_CREATED)
+
+        aquarium = Aquarium.objects.get(id=res.data['id'])
+
+        self.assertEqual(aquarium.calculated_volume(), 50)
 # ENDFILE
