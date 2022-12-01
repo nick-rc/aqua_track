@@ -17,6 +17,22 @@ ModHeader
 - Chrome extension for tracking user auth tokens.
 - https://modheader.com/install
 
+Tmux
+- `brew install tmux`
+- `tmux -V`
+- `tmux new -session_name`
+- Split Pane
+        - ctrl-b + "
+- Switch Pane
+        - ctrl-b + up or down arrow
+- Detach
+        - ctrl-b + d
+- Reattach
+        - `tmux attach`
+
+Simple guide:
+https://www.hamvocke.com/blog/a-quick-and-easy-guide-to-tmux/
+
 ### Clone the project from git
 ```bash
 git clone https://github.com/nick-rc/aqua_track.git
